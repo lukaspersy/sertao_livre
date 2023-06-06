@@ -24,11 +24,18 @@ def cadastrar_vendedor(vendedores):
     print('Vendedor cadastrado!')
     print(vendedores)
 def login_vendedor(vendedores,login, senha, produtos):
+    validacao_login = False
     for vendedor in vendedores:
         if vendedor['login'] == login and vendedor['senha'] == senha:
-            return True
-        else:
-            return False
+            print('Login realizado com sucesso')
+            validacao_login = True
+
+    if not validacao_login:
+        return False
+
+
+
+
 
 
 
