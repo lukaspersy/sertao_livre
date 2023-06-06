@@ -1,3 +1,4 @@
+from produto import *
 def cadastrar_vendedor(vendedores):
     nome = input('Digite o nome do vendedor: ')
     login = input('Digite o nome de usuário: ')
@@ -11,7 +12,8 @@ def cadastrar_vendedor(vendedores):
     for vendedor in vendedores:
         if vendedor['login'] == login:
             print('O login já está em uso, por favor escolha outro.')
-            return cadastrar_vendedor(vendedores)
+            login = input('Digite o nome de usuário: ')
+            senha = input('Digite a senha: ')
 
     vendedor = {
         'nome': nome,
@@ -21,16 +23,15 @@ def cadastrar_vendedor(vendedores):
     vendedores.append(vendedor)
     print('Vendedor cadastrado!')
     print(vendedores)
-
-def login_vendedor(vendedores):
-    login = str(input('Digite o usuário'))
-    senha = str(input('Digite a senha'))
-
+def login_vendedor(vendedores,login, senha, produtos):
     for vendedor in vendedores:
         if vendedor['login'] == login and vendedor['senha'] == senha:
-            print('Login realizado com sucesso')
-            break
+            return True
         else:
-            print('Login e/ou senha inválido. Digite novamente')
-        return login_vendedor(vendedores)
+            return False
+
+
+
+
+
 
