@@ -85,8 +85,8 @@ def atualizar_senha(vendedores, login):
 def deletar_produto(produtos, login):
     for produto in produtos:
         if produto['vendedor'] == login:
-            print(f'{produtos.index(produto)} -' + f" {produto['codigo']} " + f" {produto['nome']} " +
-                  f' {produto["valor"]} ' + f" {produto['quantidade']} " + f" {produto['descricao']}")
+            print(f'{produtos.index(produto)} =' + f" Código: {produto['codigo']} " + f"| Nome: {produto['nome']} " +
+                  f'| Valor: {produto["valor"]:.2f} ' + f"| Quantidade: {produto['quantidade']} " + f"| Descrição: {produto['descricao']}")
     busca = int(input('Informe o índice do produto que deseja remover: '))
     produtos.pop(busca)
     print('\33[1;37mProduto excluído com sucesso.\33[m')
