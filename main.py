@@ -1,5 +1,6 @@
 from vendedor import *
 from produto import *
+from cliente import *
 
 vendedores = [{'nome': 'Lucas Pereira', 'login': 'lucas', 'senha': '0000'}, {'nome': 'Júnior', 'login': 'junior', 'senha': '1111'}, {'nome': 'Everton Cândido', 'login': 'everton', 'senha': '2222'}]
 clientes = []
@@ -62,6 +63,27 @@ while True:
 
         if opcao_vendedor == 3:
             break
+
+    while opcao == 2:
+        print('======== Sertão Livre - Área do cliente ===========')
+        print('1 - Cadastrar cliente')
+        print('2 - Fazer Login')
+        print('3 - Voltar')
+        opcao_cliente = int(input('Digite a opção desejada: '))
+
+        if opcao_cliente == 1:
+            cadastrar_cliente(clientes)
+
+        if opcao_cliente == 2:
+            login = str(input('Digite o usuário: '))
+            senha = str(input('Digite a senha: '))
+            login_cliente(clientes, login, senha)
+
+            while login_cliente(clientes, login, senha) == False:
+                print(" Usuário ou senha inválido. Tente novamente")
+                login = str(input('Digite o usuário: '))
+                senha = str(input('Digite a senha: '))
+
 
 
 
