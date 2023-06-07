@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+
 def cadastrar_vendedor(vendedores):
     nome = input('Digite o nome do vendedor: ')
     login = input('Digite o nome de usuário: ')
@@ -35,21 +35,6 @@ def login_vendedor(vendedores, login, senha, produtos):
     if not validacao_login:
         return False
 
-def mostrar_grafico(produto):
-    # creating the dataset
-    courses = list(produto.keys())
-    values = list(produto.values())
-
-    fig = plt.figure(figsize=(10, 5))
-
-    # creating the bar plot
-    plt.bar(courses, values, color='red',
-            width=0.4)
-
-    plt.xlabel(['nome'])
-    plt.ylabel(['quantidade'])
-    plt.title("Sertao Livre")
-    plt.show()
 
 
 

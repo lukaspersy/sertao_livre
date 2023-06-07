@@ -46,12 +46,12 @@ while True:
                 print('=' * 35)
                 if opcao_produto == 1:
                     cadastrar_produto(produtos, login)
-                if opcao_produto == 3:
-                    mostrar_grafico(produto)
                 if opcao_produto == 4:
                     buscar_produto(produtos, login)
                 if opcao_produto == 5:
                     editar_produto(produtos, login)
+                if opcao_produto == 6:
+                    deletar_produto(produtos, login)
                 if opcao_produto == 7:
                     atualizar_senha(vendedores, login)
                 if opcao_produto == 8:
