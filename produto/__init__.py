@@ -1,4 +1,7 @@
 import matplotlib.pyplot as plt
+from menus import *
+
+
 def cadastrar_produto(produtos, login):
     codigo = str(input('Digite o código do produto: '))
     nome = str(input('Digite o nome do produto: '))
@@ -15,16 +18,9 @@ def cadastrar_produto(produtos, login):
         'vendedor': login
     }
     produtos.append(produto)
-    print('Produto cadastrado.')
+    print('\33[1;32mProduto cadastrado com sucesso!.\33[m')
     print(produtos)
 
-def mostrar_produto(produto):
-    print(f"Código: {produto['codigo']}")
-    print(f"Nome: {produto['nome']}")
-    print(f"Valor: {produto['valor']}")
-    print(f"Quantidade: {produto['quantidade']}")
-    print(f"Descrição: {produto['descricao']}")
-    print('\33[1;33m_________________________________\33[m')
 
 def buscar_produto(produtos, login):
     busca = input('Digite o nome ou código do produto: ')
@@ -38,22 +34,24 @@ def buscar_produto(produtos, login):
     if not achou:
         print('\33[1;31mProduto não encontrado.\33[m')
 
+
 def editar_produto(produtos, login):
     buscar_produto(produtos, login)
     busca = input('Digite o codigo do produto que deseja editar: ')
     for produto in produtos:
         if busca == produto['codigo'] and produto['vendedor'] == login:
-                print('\33[1;33m______Produto que será editado______\33[m')
-                mostrar_produto(produto)
-                produto['codigo'] = input('Digite o novo código: ')
-                produto['nome'] = input('Digite o novo nome: ')
-                produto['valor'] = input('Digite o novo valor: ')
-                produto['quantidade'] = input('Digite a nova quantidade: ')
-                produto['descricao'] = input('Digite a nova descrição: ')
-                print('\33[1;33mProduto editado com sucesso.\33[m')
-                print(produto)
+            print('\33[1;33m______Produto que será editado______\33[m')
+            mostrar_produto(produto)
+            produto['codigo'] = input('Digite o novo código: ')
+            produto['nome'] = input('Digite o novo nome: ')
+            produto['valor'] = input('Digite o novo valor: ')
+            produto['quantidade'] = input('Digite a nova quantidade: ')
+            produto['descricao'] = input('Digite a nova descrição: ')
+            print('\33[1;33mProduto editado com sucesso.\33[m')
+            print(produto)
         else:
             print('\33[1;31mProduto não pode ser editado.\33[m')
+
 
 def atualizar_senha(vendedores, login):
     for vendedor in vendedores:
@@ -61,6 +59,7 @@ def atualizar_senha(vendedores, login):
             vendedor['senha'] = input('Digite uma nova senha: ')
             print('\33[1;34mSenha atualizada com sucesso.\33[m')
             break
+
 
 def mostrar_grafico(produtos, login):
     nomes = []
@@ -81,6 +80,7 @@ def mostrar_grafico(produtos, login):
     plt.ylabel("Quantidade")
     plt.title("Sertao Livre")
     plt.show()
+
 
 def deletar_produto(produtos, login):
     for produto in produtos:

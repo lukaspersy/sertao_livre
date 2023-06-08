@@ -5,13 +5,13 @@ def cadastrar_vendedor(vendedores):
     senha = input('Digite a senha: ')
 
     while login == senha:
-        print('O login não pode ser igual a senha')
+        print('\33[1;31mO login não pode ser igual a senha\33[m')
         login = input('Digite o nome de usuário: ')
         senha = input('Digite a senha: ')
 
     for vendedor in vendedores:
         if vendedor['login'] == login:
-            print('O login já está em uso, por favor escolha outro.')
+            print('\33[1;31mO login já está em uso, por favor escolha outro.\33[m')
             login = input('Digite o nome de usuário: ')
             senha = input('Digite a senha: ')
 
@@ -21,7 +21,7 @@ def cadastrar_vendedor(vendedores):
         'senha': senha
     }
     vendedores.append(vendedor)
-    print('Vendedor cadastrado!')
+    print('\33[1;32mVendedor cadastrado com sucesso!\33[m')
     print(vendedores)
 
 
@@ -29,7 +29,7 @@ def login_vendedor(vendedores, login, senha, produtos):
     validacao_login = False
     for vendedor in vendedores:
         if vendedor['login'] == login and vendedor['senha'] == senha:
-            print('Login realizado com sucesso')
+            print('\33[1;34mLogin realizado com sucesso\33[m')
             validacao_login = True
             break
     return validacao_login
