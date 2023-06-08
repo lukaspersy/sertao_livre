@@ -13,7 +13,7 @@ while True:
     print('3 - Sair')
     opcao = int(input('Digite a opção desejada: '))
 
-    while opcao == 1:
+    if opcao == 1:
         print('======== Sertão Livre - Área do vendedor ===========')
         print('1 - Cadastrar Vendedor')
         print('2 - Fazer Login')
@@ -21,50 +21,45 @@ while True:
         opcao_vendedor = int(input('Digite a opção desejada: '))
         if opcao_vendedor == 1:
             cadastrar_vendedor(vendedores)
-        if opcao_vendedor == 2:
+        elif opcao_vendedor == 2:
             login = str(input('Digite o usuário: '))
             senha = str(input('Digite a senha: '))
-            login_vendedor(vendedores, login, senha, produtos)
+            if login_vendedor(vendedores, login, senha, produtos):
+                menu_produtos = True
+                while menu_produtos:
+                    print('=' * 35)
+                    opcao_produto = int(input('''   Gerenciamento de Produtos
+                                1. Cadastrar novo produto
+                                2. Listar produto
+                                3. Mostrar gráfico
+                                4. Buscar produto 
+                                5. Editar produto
+                                6. Deletar produto
+                                7. Atualizar a senha de cadastro
+                                8. Voltar ao menu principal                
+                                Digite uma opção: '''))
+                    print('=' * 35)
+                    if opcao_produto == 1:
+                        cadastrar_produto(produtos, login)
+                    elif opcao_produto == 3:
+                        mostrar_grafico(produtos, login)
+                    elif opcao_produto == 4:
+                        buscar_produto(produtos, login)
+                    elif opcao_produto == 5:
+                        editar_produto(produtos, login)
+                    elif opcao_produto == 6:
+                        deletar_produto(produtos, login)
+                    elif opcao_produto == 7:
+                        atualizar_senha(vendedores, login)
+                    elif opcao_produto == 8:
+                        menu_produtos = False
+            else:
+                print('Usuário ou senha inválido. Tente novamente')
 
-            while login_vendedor(vendedores, login, senha, produtos) == False:
-                print(" Usuário ou senha inválido. Tente novamente")
-                login = str(input('Digite o usuário: '))
-                senha = str(input('Digite a senha: '))
-
-            menu_produtos = True
-            while menu_produtos:
-                print('=' * 35)
-                opcao_produto = int(input('''   Gerenciamento de Produtos
-                1. Cadastrar novo produto
-                2. Listar produto
-                3. Mostrar gráfico
-                4. Buscar produto 
-                5. Editar produto
-                6. Deletar produto
-                7. Atualizar a senha de cadastro
-                8. Voltar ao menu principal                
-                Digite uma opção: '''))
-                print('=' * 35)
-                if opcao_produto == 1:
-                    cadastrar_produto(produtos, login)
-                if opcao_produto == 4:
-                    buscar_produto(produtos, login)
-                if opcao_produto == 5:
-                    editar_produto(produtos, login)
-                if opcao_produto == 6:
-                    deletar_produto(produtos, login)
-                if opcao_produto == 7:
-                    atualizar_senha(vendedores, login)
-                if opcao_produto == 8:
-                    menu_produtos = False
-
-        else:
-            print('Login e/ou senha inválido.')
-
-        if opcao_vendedor == 3:
+        elif opcao_vendedor == 3:
             break
 
-    while opcao == 2:
+    elif opcao == 2:
         print('======== Sertão Livre - Área do cliente ===========')
         print('1 - Cadastrar cliente')
         print('2 - Fazer Login')
@@ -74,17 +69,29 @@ while True:
         if opcao_cliente == 1:
             cadastrar_cliente(clientes)
 
-        if opcao_cliente == 2:
+        elif opcao_cliente == 2:
             login = str(input('Digite o usuário: '))
             senha = str(input('Digite a senha: '))
-            login_cliente(clientes, login, senha)
 
-            while login_cliente(clientes, login, senha) == False:
-                print(" Usuário ou senha inválido. Tente novamente")
-                login = str(input('Digite o usuário: '))
-                senha = str(input('Digite a senha: '))
+            if login_cliente(clientes, login, senha):
+                menu_compra = True
+                while menu_compra:
+                    print('=' * 35)
+                    opcao_compra = int(input('''   Menu de Compras
+                                1. Buscar produto
+                                2. Comprar produto
+                                3. Listar compras
+                                4. Consultar descrição do produto
+                                5. Sair              
+                                Digite uma opção: '''))
+                    print('=' * 35)
+                    if opcao_compra == 5:
+                        menu_compra = False
+            else:
+                print('Usuário ou senha inválido. Tente novamente')
 
-
+    elif opcao == 3:
+        break
 
 
 

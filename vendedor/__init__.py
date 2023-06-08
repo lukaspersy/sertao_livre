@@ -31,9 +31,8 @@ def login_vendedor(vendedores, login, senha, produtos):
         if vendedor['login'] == login and vendedor['senha'] == senha:
             print('Login realizado com sucesso')
             validacao_login = True
-
-    if not validacao_login:
-        return False
+            break
+    return validacao_login
 
 
 

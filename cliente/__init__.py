@@ -29,7 +29,7 @@ def login_cliente(clientes, login, senha):
             if cliente['login'] == login and cliente['senha'] == senha:
                 print('Login realizado com sucesso')
                 validacao_login = True
+                break
+        return validacao_login
 
-        if not validacao_login:
-            return False
 

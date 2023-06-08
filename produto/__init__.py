@@ -38,12 +38,11 @@ def buscar_produto(produtos, login):
     if not achou:
         print('\33[1;31mProduto não encontrado.\33[m')
 
-
 def editar_produto(produtos, login):
-    busca = input('Digite o nome ou o codigo que deseja editar: ')
+    buscar_produto(produtos, login)
+    busca = input('Digite o codigo do produto que deseja editar: ')
     for produto in produtos:
-        if busca in produto['nome'] or busca in produto['codigo']:
-            if produto['vendedor'] == login:
+        if busca == produto['codigo'] and produto['vendedor'] == login:
                 print('\33[1;33m______Produto que será editado______\33[m')
                 mostrar_produto(produto)
                 produto['codigo'] = input('Digite o novo código: ')
@@ -56,7 +55,6 @@ def editar_produto(produtos, login):
         else:
             print('\33[1;31mProduto não pode ser editado.\33[m')
 
-
 def atualizar_senha(vendedores, login):
     for vendedor in vendedores:
         if vendedor['login'] == login:
@@ -64,23 +62,25 @@ def atualizar_senha(vendedores, login):
             print('\33[1;34mSenha atualizada com sucesso.\33[m')
             break
 
-# def mostrar_grafico(produto):
-#     # creating the dataset
-#     data = {'Mesa': 20, 'Cadeira': 15, 'Corda': 30,
-#             'COrtina': 35}
-#     courses = list(data.keys())
-#     values = list(data.values())
-#
-#     fig = plt.figure(figsize=(10, 5))
-#
-#     # creating the bar plot
-#     plt.bar(courses, values, color='maroon',
-#             width=0.4)
-#
-#     plt.xlabel("Produtos")
-#     plt.ylabel("Quantidade")
-#     plt.title("Sertao Livre")
-#     plt.show()
+def mostrar_grafico(produtos, login):
+    nomes = []
+    quantidades = []
+
+    for produto in produtos:
+        if produto['vendedor'] == login:
+            nomes.append(produto['nome'])
+            quantidades.append(produto['quantidade'])
+
+    fig = plt.figure(figsize=(10, 5))
+
+    # creating the bar plot
+    plt.bar(nomes, quantidades, color='maroon',
+            width=0.4)
+
+    plt.xlabel("Produtos")
+    plt.ylabel("Quantidade")
+    plt.title("Sertao Livre")
+    plt.show()
 
 def deletar_produto(produtos, login):
     for produto in produtos:
