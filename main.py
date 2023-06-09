@@ -2,9 +2,11 @@ from vendedor import *
 from produto import *
 from cliente import *
 
-vendedores = [{'nome': 'Lucas Pereira', 'login': 'lucas', 'senha': '0000'}, {'nome': 'Júnior', 'login': 'junior', 'senha': '1111'}, {'nome': 'Everton Cândido', 'login': 'everton', 'senha': '2222'}]
-clientes = []
-produtos = []
+vendedores = [{'nome': 'Jose Luke', 'login': 'luke', 'senha': '0000'},{'nome': 'Lucas Pereira', 'login': 'lucas', 'senha': '0000'}, {'nome': 'Júnior', 'login': 'junior', 'senha': '1111'}, {'nome': 'Everton Cândido', 'login': 'everton', 'senha': '2222'}]
+clientes = [{'nome': 'Jose Luke', 'login': 'luke', 'senha': '0000'}, {'nome': 'Júnior', 'login': 'junior', 'senha': '1111'}]
+produtos = [{'codigo': '01', 'nome': 'cadeira', 'valor': 300.0, 'quantidade': 20, 'descricao': 'Cadeira Gamer Stillus Ergonômica com apoio para os pés (Preto)', 'vendedor': 'luke'}, {'codigo': '02', 'nome': 'Tênis', 'valor': 540.5, 'quantidade': 35, 'descricao': 'Tênis Nike Air Force 1 Flyease Casual', 'vendedor': 'luke'}]
+carrinho=[]
+comprados=[]
 
 while True:
     print('======== Sertão Livre - Sistema de Vendas ===========')
@@ -85,12 +87,17 @@ while True:
                                 5. Sair              
                                 Digite uma opção: '''))
                     print('=' * 35)
+                    if opcao_compra == 2:
+                        compras(produtos, carrinho, comprados)
                     if opcao_compra == 5:
                         menu_compra = False
+
             else:
                 print('Usuário ou senha inválido. Tente novamente')
 
     elif opcao == 3:
+        from art import tprint
+        tprint('Volte    Sempre')
         break
 
 
