@@ -20,7 +20,7 @@ def mostrar_menu_principal():
     print('1 - Menu do Vendedor')
     print('2 - Menu do Cliente')
     print('3 - Sair')
-    print('\33[1;35m=====================================================\33[m')
+    print('\33[1;35m====================================================\33[m')
 
 
 def mostrar_menu_produtos():
