@@ -6,6 +6,8 @@ from menus import *
 vendedores = [{'nome': 'Lucas Pereira', 'login': 'lucas', 'senha': '0000'}, {'nome': 'Júnior', 'login': 'junior', 'senha': '1111'}, {'nome': 'Everton Cândido', 'login': 'everton', 'senha': '2222'}]
 clientes = []
 produtos = []
+carrinho = []
+comprados = []
 
 while True:
     mostrar_menu_principal()
@@ -57,6 +59,8 @@ while True:
                 while menu_compra:
                     mostrar_menu_compra()
                     opcao_compra = int(input('Digite a opção desejada: '))
+                    if opcao_compra == 2:
+                        compras(produtos, carrinho, comprados)
                     if opcao_compra == 5:
                         menu_compra = False
             else:

@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from menus import *
+from sertao_livre.menus import *
 
 
 def cadastrar_produto(produtos, login):
@@ -90,3 +90,4 @@ def deletar_produto(produtos, login):
     busca = int(input('Informe o índice do produto que deseja remover: '))
     produtos.pop(busca)
     print('\33[1;37mProduto excluído com sucesso.\33[m')
+
