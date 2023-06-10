@@ -1,3 +1,7 @@
+from sertao_livre.menus import *
+import openai
+
+
 def cadastrar_cliente(clientes):
     nome = input('Digite o nome do cliente: ')
     login = input('Digite o nome de usuário: ')
@@ -25,13 +29,25 @@ def cadastrar_cliente(clientes):
 
 
 def login_cliente(clientes, login, senha):
-        validacao_login = False
-        for cliente in clientes:
-            if cliente['login'] == login and cliente['senha'] == senha:
-                print('Login realizado com sucesso')
-                validacao_login = True
-                break
-        return validacao_login
+    validacao_login = False
+    for cliente in clientes:
+        if cliente['login'] == login and cliente['senha'] == senha:
+            print('Login realizado com sucesso')
+            validacao_login = True
+            break
+    return validacao_login
+
+
+def buscar_produto_cliente(produtos):
+    busca = input('Digite o nome ou código do produto: ')
+    achou = False
+    for produto in produtos:
+        if busca in produto['nome'] or busca in produto['codigo']:
+            achou = True
+            print('\33[1;33m______Resultado da busca______\33[m')
+            mostrar_produto(produto)
+    if not achou:
+        print('\33[1;31mProduto não encontrado.\33[m')
 
 
 def compras(produtos, carrinho, comprados):
@@ -39,14 +55,8 @@ def compras(produtos, carrinho, comprados):
     print(f'Tamanho da lista {len(produtos)}')
     for produto in produtos:
         # Esta parte vai ser subsituida pela função mostrar produtos
-        print(f"\033[0;34m             === PRODUTOS EM ESTOQUE ===\033[m")
-        print(f"Código: {produto['codigo']}\n",
-              f"\033[1;33mNome: {produto['nome']}\n",
-              f"Valor: {produto['valor']}\n",
-              f"Quantidade: {produto['quantidade']}\n",
-              f"Descrição: {produto['descricao']}\033[m")
-
-        print("=" * 35)
+        print(f"\033[0;34m_____   PRODUTOS EM ESTOQUE   _____\033[m")
+        mostrar_produto(produto)
 
     busca_produto = str(input('Digite o código do produto que deseja comprar: '))
     busca_quant = int(input('Digite a quantidade do produto que deseja comprar: '))
@@ -115,7 +125,8 @@ def compras(produtos, carrinho, comprados):
                     decrementado = quantidade
                     produto['quantidade'] = decrementado
 
-                    print(f'\033[0;36mVocê optou por não comprar: {busca_quant} unidades do produto:{nome} {descricao}\033[m')
+                    print(
+                        f'\033[0;36mVocê optou por não comprar: {busca_quant} unidades do produto:{nome} {descricao}\033[m')
                     if len(carrinho) <= 0:
                         print(f'\033[1;35mSituação do carrinho: VAZIO\033[m')
                     print('Em estoque restaram:')
@@ -127,3 +138,26 @@ def compras(produtos, carrinho, comprados):
 
         break
 
+
+# def consultar_descricao(produtos):
+#     openai.api_key = 'minha chave'
+#
+#     # Set the model and prompt
+#     model_engine = "text-davinci-003"
+#     prompt = 'me diga resumidamente o que você acha do ' + produtos['descricao'] + ' ?'
+#     # Set the maximum number of tokens to generate in the response
+#     max_tokens = 1024
+#
+#     # Generate a response
+#     completion = openai.Completion.create(
+#         engine=model_engine,
+#         prompt=prompt,
+#         max_tokens=max_tokens,
+#         temperature=0.5,
+#         top_p=1,
+#         frequency_penalty=0,
+#         presence_penalty=0
+#     )
+#
+#     # Print the response
+#     return completion.choices[0].text

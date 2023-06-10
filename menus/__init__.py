@@ -33,7 +33,8 @@ def mostrar_menu_produtos():
     5. Editar produto
     6. Deletar produto
     7. Atualizar a senha de cadastro
-    8. Voltar ao menu principal''')
+    8. Voltar ao menu principal
+    ''')
     print('\33[1;32m=========================================\33[m')
 
 
@@ -52,5 +53,6 @@ def mostrar_menu_compra():
     2. Comprar produto
     3. Listar compras
     4. Consultar descrição do produto
-    5. Sair''')
+    5. Sair
+    ''')
     print('\33[1;33m===========================================\33[m')

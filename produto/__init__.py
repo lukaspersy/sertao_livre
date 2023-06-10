@@ -78,7 +78,7 @@ def mostrar_grafico(produtos, login):
 
     plt.xlabel("Produtos")
     plt.ylabel("Quantidade")
-    plt.title("Sertao Livre")
+    plt.title("Sertão Livre")
     plt.show()
 
 

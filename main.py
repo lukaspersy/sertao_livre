@@ -59,9 +59,13 @@ while True:
                 while menu_compra:
                     mostrar_menu_compra()
                     opcao_compra = int(input('Digite a opção desejada: '))
-                    if opcao_compra == 2:
+                    if opcao_compra == 1:
+                        buscar_produto_cliente(produtos)
+                    elif opcao_compra == 2:
                         compras(produtos, carrinho, comprados)
-                    if opcao_compra == 5:
+                    # elif opcao_compra == 4:
+                    #     consultar_descricao(produtos)
+                    elif opcao_compra == 5:
                         menu_compra = False
             else:
                 print('\33[1;37mUsuário ou senha inválido. Tente novamente\33[m')
