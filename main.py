@@ -64,13 +64,14 @@ while True:
                     elif opcao_compra == 2:
                         compras(produtos, carrinho, comprados)
                     # elif opcao_compra == 4:
-                    #     consultar_descricao(produtos)
+                    #     consultar_descricao(produto)
                     elif opcao_compra == 5:
                         menu_compra = False
             else:
                 print('\33[1;37mUsuário ou senha inválido. Tente novamente\33[m')
 
     elif opcao == 3:
+        print('Programa encerrado!')
         break
 
 
