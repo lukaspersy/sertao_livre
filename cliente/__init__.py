@@ -31,32 +31,36 @@ def cadastrar_cliente(clientes):
 
 
 def login_cliente(clientes, login, senha):
-    validacao_login = False
+    clienteLogado = None
     for cliente in clientes:
         if cliente['login'] == login and cliente['senha'] == senha:
+            clienteLogado = cliente
             print('Login realizado com sucesso')
-            validacao_login = True
             break
-    return validacao_login
+    return clienteLogado
 
 
 def buscar_produto_cliente(produtos):
     busca = input('Digite o nome ou código do produto: ')
-    achou = False
+    achou = None
     for produto in produtos:
         if busca in produto['nome'] or busca in produto['codigo']:
-            achou = True
-            print('\33[1;33m___Resultado da busca___\33[m')
-            return produto
-    if not achou:
+            achou = produto
+            print('\33[1;33m__Resultado da busca__\33[m')
+
+    if achou is None:
         print('\33[1;31mProduto não encontrado.\33[m')
+    return achou
 
 
-def compras(produtos, carrinho, comprados):
+def compras(produtos, carrinho, comprados, usuarioLogado):
     # Colocar a função mostrar produtos
+    menuContinuarComprando = True
+    menuCompras = True
     global nome, descricao, quantidade, valor
-    while True:
-        listar_produtos(produtos)
+    listar_produtos(produtos)
+
+    while menuCompras:
 
         busca_produto = str(input('Digite o código do produto que deseja comprar: '))
         busca_quant = int(input('Digite a quantidade do produto que deseja comprar: '))
@@ -65,13 +69,16 @@ def compras(produtos, carrinho, comprados):
 
             if busca_produto == produto['codigo'] and busca_quant <= produto['quantidade']:
                 produtoSelecionado = produto.copy()
+                produtoSelecionado = produto.copy()
+                print(produtoSelecionado)
+                produtoSelecionado = produto.copy()
+                print(produtoSelecionado)
+                produtoSelecionado['quantidade'] = busca_quant
+                produtoSelecionado['quantidade'] = busca_quant
                 print(produtoSelecionado)
                 produtoSelecionado['quantidade'] = busca_quant
                 print(produtoSelecionado)
                 carrinho.append(produtoSelecionado)
-
-                print(carrinho)
-
                 quantidade = produto['quantidade']
                 decrementado = quantidade - busca_quant
                 # atualiza o dicionario
@@ -81,6 +88,9 @@ def compras(produtos, carrinho, comprados):
                 descricao = produto['descricao']
                 valor = produto['valor']
                 encontrado = True
+                encontrado = True
+                print(carrinho)
+                encontrado = True
                 print(carrinho)
                 break
 
@@ -88,18 +98,18 @@ def compras(produtos, carrinho, comprados):
             print("\033[0;31mProduto não encontrado ou quantidade insuficiente.\033[m")
             break
 
-        while True:
+        while menuContinuarComprando:
             print('Deseja continuar comprando?')
             print("1. Continuar comprando")
             print("2. Não")
             opcao = input("Digite o número da opção desejada: ")
 
             if opcao == '1':
-                compras(produtos, carrinho, comprados)
+                # compras(produtos, carrinho, comprados)
                 print("\033[1;36mContinuando compra...\033[m ")
                 break
             elif opcao == '2':
-                print(carrinho)
+                menuContinuarComprando = False
                 print('\033[1;36mEncerrando...\033[m')
                 print("Deseja fechar suas compras?")
                 print("\033[1;33m1. Sim")
@@ -107,24 +117,31 @@ def compras(produtos, carrinho, comprados):
                 comprar = input("Digite o número da opção desejada para Fechar sua compra: ")
 
                 if comprar == '1':
-                    comprados.append(carrinho.copy())
+                    menuCompras = False
+                    comprados = carrinho.copy()
+                    # Associando a compra ao usuario logado2
+                    usuarioLogado['comprados'].append(comprados)
 
                     carrinho.clear()
                     print(comprados)
 
                     for produto in comprados:
-                        print(f'Foram comprados {busca_quant} unidades do produto:')
+                        print(f"Foram comprados {produto['quantidade']} unidades do produto:")
                         print("\033[0;33mCódigo:", produto['codigo'])
                         print("Nome:", produto['nome'])
                         print("Valor:", produto['valor'])
                         print("Quantidade:", produto['quantidade'])
                         print("Descrição:", produto['descricao'])
-                        print(f'Totalizando R$:{valor * busca_quant}\033[m')
+                        print(f"Totalizando R$:{produto['valor'] * produto['quantidade']}\033[m")
                         print("--------------------")
 
 
                 elif comprar == '2':
 
+                    print(f'\033[1;35mHá alguns itens no carrinho esperando por você:\033[m')
+                    print(f'\033[1;35mHá alguns itens no carrinho esperando por você:\033[m')
+                    # for item in carrinho:
+                    #     print(f'\033[0;36mVocê selecionou {item['quantidade']} unidades do produto:{item['nome']}-{item['descricao']}\033[m')
                     print(f'\033[1;35mHá alguns itens no carrinho esperando por você:\033[m')
                     # for item in carrinho:
                     #     print(f'\033[0;36mVocê selecionou {item['quantidade']} unidades do produto:{item['nome']}-{item['descricao']}\033[m')
@@ -147,20 +164,13 @@ def compras(produtos, carrinho, comprados):
                     confirmacao = input("Digite o número da opção desejada: ")
 
                     if confirmacao == '1':
-                        for produto in produtos:
-
-                            if busca_produto == produto['codigo'] and busca_quant <= produto['quantidade']:
-                                carrinho.append(produto)
-                                quantidade = produto['quantidade']
-                                incrementado = quantidade + busca_quant
-                                # atualiza o dicionario
-                                produto['quantidade'] = incrementado
-                                # só exibe nos prints
-                                nome = produto['nome']
-                                descricao = produto['descricao']
-
-                        print(
-                            f'\033[0;36mVocê optou por não comprar: {busca_quant} unidades do produto:{nome} {descricao}\033[m')
+                        for item in carrinho:
+                            for produtoEstoque in produtos:
+                                if (item['codigo'] == produtoEstoque['codigo']):
+                                    print(
+                                        f"\033[0;36mVocê optou por não comprar: {item['quantidade']} unidades do produto: {item['descricao']}\033[m")
+                                    produtoEstoque['quantidade'] = produtoEstoque['quantidade'] + item['quantidade']
+                        carrinho.clear()
                         if len(carrinho) <= 0:
                             print(f'\033[1;35mSituação do carrinho: VAZIO\033[m')
 
@@ -200,3 +210,12 @@ def consultar_descricao(produtos):
 
     # Print the response
     return completion.choices[0].text
+
+
+def listar_compras(clienteLogado):
+    print(f'\033[1;35mMinhas Compras:\033[m')
+    if len(clienteLogado['comprados']) > 0:
+        for compra in clienteLogado['comprados']:
+            listar_produtos(compra)
+    else:
+        print(f'\033[1;35mNenhum registro encontrado.\033[m')

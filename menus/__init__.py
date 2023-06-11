@@ -1,10 +1,11 @@
 def mostrar_produto(produto):
-    print(f"Código: {produto['codigo']}")
-    print(f"Nome: {produto['nome']}")
-    print(f"Valor: {produto['valor']}")
-    print(f"Quantidade: {produto['quantidade']}")
-    print(f"Descrição: {produto['descricao']}")
-    print('\33[1;33m_________________________________\33[m')
+    if produto is not None:
+        print(f"Código: {produto['codigo']}")
+        print(f"Nome: {produto['nome']}")
+        print(f"Valor: {produto['valor']}")
+        print(f"Quantidade: {produto['quantidade']}")
+        print(f"Descrição: {produto['descricao']}")
+        print('\33[1;33m_________________________________\33[m')
 
 
 def mostrar_menu_vendedor():

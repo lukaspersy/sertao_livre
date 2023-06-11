@@ -4,7 +4,7 @@ from cliente import *
 from menus import *
 
 vendedores = [{'nome': 'Jose Luke', 'login': 'luke', 'senha': '0000'},{'nome': 'Lucas Pereira', 'login': 'lucas', 'senha': '0000'}, {'nome': 'Júnior', 'login': 'junior', 'senha': '1111'}, {'nome': 'Everton Cândido', 'login': 'everton', 'senha': '2222'}]
-clientes = [{'nome': 'Jose Luke', 'login': 'luke', 'senha': '0000'}, {'nome': 'Júnior', 'login': 'junior', 'senha': '1111'}]
+clientes = [{'nome': 'Jose Luke', 'login': 'luke', 'senha': '0000', 'comprados':[]}, {'nome': 'Júnior', 'login': 'junior', 'senha': '1111', 'comprados':[]}]
 produtos = [{'codigo': '01', 'nome': 'cadeira', 'valor': 300.0, 'quantidade': 20, 'descricao': 'Cadeira Gamer Stillus Ergonômica com apoio para os pés (Preto)', 'vendedor': 'luke'}, {'codigo': '02', 'nome': 'Tênis', 'valor': 540.5, 'quantidade': 35, 'descricao': 'Tênis Nike Air Force 1 Flyease Casual', 'vendedor': 'luke'}]
 carrinho = []
 comprados = []
@@ -28,6 +28,8 @@ while True:
                     opcao_produto = int(input('Digte a opção desejada: '))
                     if opcao_produto == 1:
                         cadastrar_produto(produtos, login)
+                    elif opcao_produto == 2:
+                        listar_produto(produtos, login)
                     elif opcao_produto == 3:
                         mostrar_grafico(produtos, login)
                     elif opcao_produto == 4:
@@ -54,7 +56,8 @@ while True:
         elif opcao_cliente == 2:
             login = str(input('Digite o usuário: '))
             senha = str(input('Digite a senha: '))
-            if login_cliente(clientes, login, senha):
+            clienteLogado = login_cliente(clientes, login, senha)
+            if clienteLogado is not None:
                 menu_compra = True
                 while menu_compra:
                     mostrar_menu_compra()
@@ -63,7 +66,9 @@ while True:
                         produtoCliente = buscar_produto_cliente(produtos)
                         mostrar_produto(produtoCliente)
                     elif opcao_compra == 2:
-                        compras(produtos, carrinho, comprados)
+                        compras(produtos, carrinho, comprados, clienteLogado)
+                    elif opcao_compra == 3:
+                        listar_compras(clienteLogado)
                     elif opcao_compra == 4:
                         listar_produtos(produtos)
                         print(consultar_descricao(produtos))
@@ -75,10 +80,3 @@ while True:
     elif opcao == 3:
         print('Programa encerrado!')
         break
-
-
-
-
-
-
-

@@ -1,0 +1,16 @@
+nome do produto: cadeira
+valor do produto: 300.0
+qtde do produto: 20
+
+nome do produto: Tênis
+valor do produto: 540.5
+qtde do produto: 35
+
+nome do produto: cadeira
+valor do produto: 300.0
+qtde do produto: 20
+
+nome do produto: Tênis
+valor do produto: 540.5
+qtde do produto: 35
+

@@ -1,4 +1,3 @@
-
 def cadastrar_vendedor(vendedores):
     nome = input('Digite o nome do vendedor: ')
     login = input('Digite o nome de usuário: ')
@@ -35,11 +34,35 @@ def login_vendedor(vendedores, login, senha, produtos):
     return validacao_login
 
 
+def listar_produto(produtos, login):
+    for produto in produtos:
+        escreverNoArquivo(produto, login)
+    lerarquivo(login)
 
 
+def escreverNoArquivo(produto, login):
+    nome = produto['nome']
+    valor = produto['valor']
+    qtde = produto['quantidade']
+
+    texto = f'nome do produto: {nome}\n'
+    texto = texto + f'valor do produto: {valor}\n'
+    texto = texto + f'qtde do produto: {qtde}\n\n'
+
+    salvarArquivo(texto, login)
 
 
+# Necessario validar produtos repitidos ?
+def salvarArquivo(texto, login):
+    f = open(f'produtos_{login}.txt', 'a')
+    f.write(texto)
+    f.close()
 
 
+def lerarquivo(login):
+    f = open(f'produtos_{login}.txt', 'r')
 
+    for linha in f.readlines():
+        print(linha, end='')
 
+    f.close()
