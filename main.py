@@ -60,11 +60,13 @@ while True:
                     mostrar_menu_compra()
                     opcao_compra = int(input('Digite a opção desejada: '))
                     if opcao_compra == 1:
-                        buscar_produto_cliente(produtos)
+                        produtoCliente = buscar_produto_cliente(produtos)
+                        mostrar_produto(produtoCliente)
                     elif opcao_compra == 2:
                         compras(produtos, carrinho, comprados)
-                    # elif opcao_compra == 4:
-                    #     consultar_descricao(produto)
+                    elif opcao_compra == 4:
+                        listar_produtos(produtos)
+                        print(consultar_descricao(produtos))
                     elif opcao_compra == 5:
                         menu_compra = False
             else:
