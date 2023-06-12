@@ -40,15 +40,15 @@ def editar_produto(produtos, login):
     busca = input('Digite o codigo do produto que deseja editar: ')
     for produto in produtos:
         if busca == produto['codigo'] and produto['vendedor'] == login:
-            print('\33[1;33m______Produto que será editado______\33[m')
-            mostrar_produto(produto)
-            produto['codigo'] = input('Digite o novo código: ')
+            #print('\33[1;33m______Produto que será editado______\33[m')
+            #mostrar_produto(produto)
             produto['nome'] = input('Digite o novo nome: ')
             produto['valor'] = input('Digite o novo valor: ')
-            produto['quantidade'] = input('Digite a nova quantidade: ')
+            produto['quantidade'] = int(input('Digite a nova quantidade: '))
             produto['descricao'] = input('Digite a nova descrição: ')
             print('\33[1;33mProduto editado com sucesso.\33[m')
             print(produto)
+            break
         else:
             print('\33[1;31mProduto não pode ser editado.\33[m')
 

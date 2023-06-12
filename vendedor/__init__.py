@@ -47,12 +47,11 @@ def escreverNoArquivo(produto, login):
 
     texto = f'nome do produto: {nome}\n'
     texto = texto + f'valor do produto: {valor}\n'
-    texto = texto + f'qtde do produto: {qtde}\n\n'
+    texto = texto + f'quantidade do produto: {qtde}\n\n'
 
     salvarArquivo(texto, login)
 
 
-# Necessario validar produtos repitidos ?
 def salvarArquivo(texto, login):
     f = open(f'produtos_{login}.txt', 'a')
     f.write(texto)

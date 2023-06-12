@@ -31,13 +31,13 @@ def cadastrar_cliente(clientes):
 
 
 def login_cliente(clientes, login, senha):
-    clienteLogado = None
+    cliente_logado = None
     for cliente in clientes:
         if cliente['login'] == login and cliente['senha'] == senha:
-            clienteLogado = cliente
+            cliente_logado = cliente
             print('Login realizado com sucesso')
             break
-    return clienteLogado
+    return cliente_logado
 
 
 def buscar_produto_cliente(produtos):
@@ -69,27 +69,16 @@ def compras(produtos, carrinho, comprados, usuarioLogado):
 
             if busca_produto == produto['codigo'] and busca_quant <= produto['quantidade']:
                 produtoSelecionado = produto.copy()
-                produtoSelecionado = produto.copy()
-                print(produtoSelecionado)
-                produtoSelecionado = produto.copy()
-                print(produtoSelecionado)
-                produtoSelecionado['quantidade'] = busca_quant
-                produtoSelecionado['quantidade'] = busca_quant
                 print(produtoSelecionado)
                 produtoSelecionado['quantidade'] = busca_quant
                 print(produtoSelecionado)
                 carrinho.append(produtoSelecionado)
                 quantidade = produto['quantidade']
                 decrementado = quantidade - busca_quant
-                # atualiza o dicionario
                 produto['quantidade'] = decrementado
-                # só exibe nos prints
                 nome = produto['nome']
                 descricao = produto['descricao']
                 valor = produto['valor']
-                encontrado = True
-                encontrado = True
-                print(carrinho)
                 encontrado = True
                 print(carrinho)
                 break
@@ -105,7 +94,6 @@ def compras(produtos, carrinho, comprados, usuarioLogado):
             opcao = input("Digite o número da opção desejada: ")
 
             if opcao == '1':
-                # compras(produtos, carrinho, comprados)
                 print("\033[1;36mContinuando compra...\033[m ")
                 break
             elif opcao == '2':
@@ -140,12 +128,7 @@ def compras(produtos, carrinho, comprados, usuarioLogado):
 
                     print(f'\033[1;35mHá alguns itens no carrinho esperando por você:\033[m')
                     print(f'\033[1;35mHá alguns itens no carrinho esperando por você:\033[m')
-                    # for item in carrinho:
-                    #     print(f'\033[0;36mVocê selecionou {item['quantidade']} unidades do produto:{item['nome']}-{item['descricao']}\033[m')
                     print(f'\033[1;35mHá alguns itens no carrinho esperando por você:\033[m')
-                    # for item in carrinho:
-                    #     print(f'\033[0;36mVocê selecionou {item['quantidade']} unidades do produto:{item['nome']}-{item['descricao']}\033[m')
-
                     for item in carrinho:
                         print("\033[0;33mCódigo:", item['codigo'])
                         print("Nome:", item['nome'])
@@ -179,7 +162,7 @@ def compras(produtos, carrinho, comprados, usuarioLogado):
                 break
 
             else:
-                print("Opção inválida. Por favor, escolha uma opção válida.")
+                print("Opção inválida. Por favor, escolha uma opção válida.")
 
 
 def listar_produtos(produtos):
