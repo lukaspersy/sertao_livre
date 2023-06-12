@@ -77,6 +77,9 @@ while True:
             else:
                 print('\33[1;37mUsuário ou senha inválido. Tente novamente\33[m')
 
+
     elif opcao == 3:
-        print('Programa encerrado!')
+        from art import tprint
+        print('\033[1;36mPrograma encerrado!\033[m')
+        tprint('Volte  Sempre')
         break
