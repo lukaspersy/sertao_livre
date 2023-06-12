@@ -23,11 +23,11 @@ def cadastrar_cliente(clientes):
     cliente = {
         'nome': nome,
         'login': login,
-        'senha': senha
+        'senha': senha,
+        'comprados':[]
     }
     clientes.append(cliente)
     print('Cliente cadastrado!')
-    print(clientes)
 
 
 def login_cliente(clientes, login, senha):
@@ -54,7 +54,6 @@ def buscar_produto_cliente(produtos):
 
 
 def compras(produtos, carrinho, comprados, usuarioLogado):
-    # Colocar a função mostrar produtos
     menuContinuarComprando = True
     menuCompras = True
     global nome, descricao, quantidade, valor
@@ -69,9 +68,7 @@ def compras(produtos, carrinho, comprados, usuarioLogado):
 
             if busca_produto == produto['codigo'] and busca_quant <= produto['quantidade']:
                 produtoSelecionado = produto.copy()
-                print(produtoSelecionado)
                 produtoSelecionado['quantidade'] = busca_quant
-                print(produtoSelecionado)
                 carrinho.append(produtoSelecionado)
                 quantidade = produto['quantidade']
                 decrementado = quantidade - busca_quant
@@ -80,7 +77,6 @@ def compras(produtos, carrinho, comprados, usuarioLogado):
                 descricao = produto['descricao']
                 valor = produto['valor']
                 encontrado = True
-                print(carrinho)
                 break
 
         if not encontrado:
@@ -92,7 +88,6 @@ def compras(produtos, carrinho, comprados, usuarioLogado):
             print("1. Continuar comprando")
             print("2. Não")
             opcao = input("Digite o número da opção desejada: ")
-
             if opcao == '1':
                 print("\033[1;36mContinuando compra...\033[m ")
                 break
@@ -103,16 +98,11 @@ def compras(produtos, carrinho, comprados, usuarioLogado):
                 print("\033[1;33m1. Sim")
                 print("2. Não\033[m")
                 comprar = input("Digite o número da opção desejada para Fechar sua compra: ")
-
                 if comprar == '1':
                     menuCompras = False
                     comprados = carrinho.copy()
-                    # Associando a compra ao usuario logado2
                     usuarioLogado['comprados'].append(comprados)
-
                     carrinho.clear()
-                    print(comprados)
-
                     for produto in comprados:
                         print(f"Foram comprados {produto['quantidade']} unidades do produto:")
                         print("\033[0;33mCódigo:", produto['codigo'])
@@ -122,12 +112,7 @@ def compras(produtos, carrinho, comprados, usuarioLogado):
                         print("Descrição:", produto['descricao'])
                         print(f"Totalizando R$:{produto['valor'] * produto['quantidade']}\033[m")
                         print("--------------------")
-
-
                 elif comprar == '2':
-
-                    print(f'\033[1;35mHá alguns itens no carrinho esperando por você:\033[m')
-                    print(f'\033[1;35mHá alguns itens no carrinho esperando por você:\033[m')
                     print(f'\033[1;35mHá alguns itens no carrinho esperando por você:\033[m')
                     for item in carrinho:
                         print("\033[0;33mCódigo:", item['codigo'])
@@ -138,14 +123,10 @@ def compras(produtos, carrinho, comprados, usuarioLogado):
                         print(f"Valor:", item['valor'])
                         print(f'Totalizando R$:{total}\033[m')
                         print("--------------------")
-
                     print(f'Tem certeza que deseja \033[1;31mNÃO CONTINUAR\033[m com a compra destes itens?')
-
                     print("\033[1;33m1. Sim, tenho certeza!")
                     print("2. Não, Acho que vou comprar!\033[m")
-
                     confirmacao = input("Digite o número da opção desejada: ")
-
                     if confirmacao == '1':
                         for item in carrinho:
                             for produtoEstoque in produtos:
@@ -156,13 +137,12 @@ def compras(produtos, carrinho, comprados, usuarioLogado):
                         carrinho.clear()
                         if len(carrinho) <= 0:
                             print(f'\033[1;35mSituação do carrinho: VAZIO\033[m')
-
                     elif confirmacao == '2':
                         return opcao == 2
                 break
-
             else:
                 print("Opção inválida. Por favor, escolha uma opção válida.")
+        break
 
 
 def listar_produtos(produtos):

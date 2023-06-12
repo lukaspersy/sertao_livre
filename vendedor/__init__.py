@@ -21,7 +21,6 @@ def cadastrar_vendedor(vendedores):
     }
     vendedores.append(vendedor)
     print('\33[1;32mVendedor cadastrado com sucesso!\33[m')
-    print(vendedores)
 
 
 def login_vendedor(vendedores, login, senha, produtos):
